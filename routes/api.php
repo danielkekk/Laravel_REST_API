@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 Route::post('login', 'PassportController@login');
 Route::post('register', 'PassportController@register');
 
+/*Admin auth*/
 Route::prefix('admin')->group(function() {
     Route::post('login', 'PassportController@adminLogin');
     Route::post('register', 'PassportController@adminRegister');
