@@ -27,7 +27,8 @@ class PassportController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password)
+            'password' => bcrypt($request->password),
+            'c_password' => 'required|same:password',
         ]);
  
         $token = $user->createToken('LaravelApp')->accessToken;
@@ -77,7 +78,6 @@ class PassportController extends Controller
             'password' => bcrypt($request->password)
         ]);
 
-        //TODO: csak a pár adminnak adunk tokent
         if(!in_array(mb_strtolower($request->email, 'UTF-8'), ['danielkekk@gmail.com'])) {
             return response()->json(['error' => 'UnAuthorised'], 401);
         }
