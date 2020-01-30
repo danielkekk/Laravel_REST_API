@@ -46,7 +46,7 @@ class PassportController extends Controller
     {
         $credentials = [
             'email' => $request->email,
-            'password' => $request->password
+            'password' => $request->passwordupdateUser
         ];
  
         if (auth()->attempt($credentials)) {
@@ -173,13 +173,16 @@ class PassportController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'id' => 'required|numeric',
-            'mother_name' => 'required|string'
+            'mother_name' => 'required|string',
+            'mobile' => 'required|digits:9',
+            'birthday' => 'required|date_format:Ymd'
         ]);
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 400);
         }
 
-        $affected = DB::update('update users set mother_name = ? where id = ?', [$request->mother_name, $request->id]);
+        $affected = DB::update('UPDATE users SET mother_name = ?, mobile = ?, birthday = ? WHERE id = ?',
+            [$request->mother_name, $request->mobile, $request->birthday, $request->id]);
         if($affected === 0) {
             return response()->json(['error' => ['msg' => ['User('.$request->id.') was not updated.']]], 404);
         }
