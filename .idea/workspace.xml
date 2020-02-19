@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="60267e7d-8af5-490c-bff4-1e7aa379322b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/PassportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/PassportController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,8 +54,8 @@
       <file leaf-file-name="PassportController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PassportController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="113">
-              <caret line="170" column="7" lean-forward="true" selection-start-line="170" selection-start-column="7" selection-end-line="170" selection-end-column="7" />
+            <state relative-caret-position="215">
+              <caret line="179" column="34" lean-forward="true" selection-start-line="179" selection-start-column="34" selection-end-line="179" selection-end-column="34" />
               <folding>
                 <element signature="e#42#55#0#PHP" expanded="true" />
               </folding>
@@ -356,7 +355,7 @@
       <workItem from="1580054081212" duration="7160000" />
       <workItem from="1580066984554" duration="319000" />
       <workItem from="1580153740103" duration="1527000" />
-      <workItem from="1580414378216" duration="2734000" />
+      <workItem from="1580414378216" duration="3546000" />
     </task>
     <task id="LOCAL-00001" summary="init1">
       <created>1580067254064</created>
@@ -372,15 +371,21 @@
       <option name="project" value="LOCAL" />
       <updated>1580155748703</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="update mobile birthday">
+      <created>1580417686409</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1580417686409</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42712000" />
+    <option name="totallyTimeSpent" value="43524000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" weight="0.24963397" />
       <window_info anchor="bottom" id="TODO" order="6" />
@@ -433,7 +438,8 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="init1" />
     <MESSAGE value="pkey, confirm password" />
-    <option name="LAST_COMMIT_MESSAGE" value="pkey, confirm password" />
+    <MESSAGE value="update mobile birthday" />
+    <option name="LAST_COMMIT_MESSAGE" value="update mobile birthday" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ProductController.php">
@@ -770,8 +776,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/PassportController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="170" column="7" lean-forward="true" selection-start-line="170" selection-start-column="7" selection-end-line="170" selection-end-column="7" />
+        <state relative-caret-position="215">
+          <caret line="179" column="34" lean-forward="true" selection-start-line="179" selection-start-column="34" selection-end-line="179" selection-end-column="34" />
           <folding>
             <element signature="e#42#55#0#PHP" expanded="true" />
           </folding>

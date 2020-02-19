@@ -183,7 +183,7 @@ class PassportController extends Controller
 
         $affected = DB::update('UPDATE users SET mother_name = ?, mobile = ?, birthday = ? WHERE id = ?',
             [$request->mother_name, $request->mobile, $request->birthday, $request->id]);
-        if($affected === 0) {
+        if((int)$affected === 0) {
             return response()->json(['error' => ['msg' => ['User('.$request->id.') was not updated.']]], 404);
         }
 
