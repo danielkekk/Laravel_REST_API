@@ -33,7 +33,9 @@ Route::middleware(['checkIp', 'auth:api', 'throttle:60,1'])->group(function () {
 
 //Admin routes
 Route::middleware(['checkIp', 'auth:api', 'throttle:60,1', 'scope:get,create,update,delete'])->group(function () {
-    Route::get('admin/categories', 'CategoryController@index');
+    Route::get('admin/category', 'CategoryController@index');
+    Route::get('admin/category/{id}', 'CategoryController@show');
+    Route::post('admin/category', 'CategoryController@store');
 });
 
 /*Route::middleware(['checkIp', 'auth:api'], 'throttle:3,1')->get('/user', function (Request $request) {
