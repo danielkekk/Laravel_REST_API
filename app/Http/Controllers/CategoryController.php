@@ -69,6 +69,43 @@ class CategoryController extends Controller
     }
 
     /**
+     * Insert a new childnode into the nested set
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function storeAChildNode(Request $request)
+    {
+        if(empty($request->name) || empty($request->parent)) {
+            return response()->json(['error' => ['msg' => ['Failed to insert.']]], 404);
+        }
+
+        try {
+            DB::beginTransaction();
+            $parentCategory = Category::findOrFail(trim($request->parent));
+            Category::where('rgt', '>', $parentCategory->lft)->update(['rgt' => DB::raw('rgt+2')]);
+            Category::where('lft', '>', $parentCategory->lft)->update(['lft' => DB::raw('lft+2')]);
+
+            $newCategory = new Category();
+            $newCategory->name = $request->name;
+            $newCategory->rgt = $parentCategory->lft + 2;
+            $newCategory->lft = $parentCategory->lft + 1;
+            $newCategory->saveOrFail();
+            DB::commit();
+        } catch(\Exception $e) {
+            DB::rollBack();
+            return response()->json(['error' => ['msg' => [$e->getMessage()]]], 404);
+        } catch(\Throwable $t) {
+            DB::rollBack();
+            return response()->json(['error' => ['msg' => [$t->getMessage()]]], 404);
+        }
+
+        return response()->json([
+            'success' => true,
+            'msg' => $request->name . " category was inserted."], 200);
+    }
+
+    /**
      * Display the specified resource.
      *
      * @param  int  $id
