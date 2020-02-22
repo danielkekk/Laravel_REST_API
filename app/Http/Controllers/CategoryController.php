@@ -142,13 +142,45 @@ class CategoryController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove a node and its all children from nested set.
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        if(empty($request->id)) {
+            return response()->json(['error' => ['msg' => ['Failed to insert.']]], 404);
+        }
+
+        try {
+            DB::beginTransaction();
+            $category = Category::findOrFail($request->id);
+            $categoryWidth = $category->rgt - $category->lft + 1;
+
+            Category::whereBetween('lft', [$category->lft, $category->rgt])->delete();
+            Category::where('rgt', '>', $category->rgt)->update(['rgt' => DB::raw('rgt-'.$categoryWidth)]);
+            Category::where('lft', '>', $category->rgt)->update(['lft' => DB::raw('lft-'.$categoryWidth)]);
+            DB::commit();
+        } catch(\Exception $e) {
+            DB::rollBack();
+            return response()->json(['error' => ['msg' => [$e->getMessage()]]], 404);
+        } catch(\Throwable $t) {
+            DB::rollBack();
+            return response()->json(['error' => ['msg' => [$t->getMessage()]]], 404);
+        }
+
+        return response()->json([
+            'success' => true,
+            'msg' => $request->name . " category was inserted."], 200);
+
+        /*SELECT @myLeft := lft, @myRight := rgt, @myWidth := rgt - lft + 1
+FROM nested_category
+WHERE name = 'GAME CONSOLES';
+
+DELETE FROM nested_category WHERE lft BETWEEN @myLeft AND @myRight;
+
+UPDATE nested_category SET rgt = rgt - @myWidth WHERE rgt > @myRight;
+UPDATE nested_category SET lft = lft - @myWidth WHERE lft > @myRight;*/
     }
 }
